@@ -22,4 +22,17 @@ app.post("/details", async (req, res) => {
   }
 });
 
+app.get("/show-data", async (req, res) => {
+  try {
+    let data = await Details.find();
+    if (data.length > 0) {
+      res.send(data);
+    } else {
+      res.send({ message: "No data found" });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.listen(8080, () => console.log("Server running on port 8080"));
